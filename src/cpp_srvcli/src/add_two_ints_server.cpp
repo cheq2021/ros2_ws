@@ -1,28 +1,66 @@
-#include "rclcpp/rclcpp.hpp"
-#include "example_interfaces/srv/add_two_ints.hpp"
+#define _example_interfaces_ 1
+#define _tutorial_interfaces_ 0
 
+#include "rclcpp/rclcpp.hpp"
 #include <memory>
 
-void add(const std::shared_ptr<example_interfaces::srv::AddTwoInts::Request> request,
-          std::shared_ptr<example_interfaces::srv::AddTwoInts::Response>      response)
-{
-  response->sum = request->a + request->b;
-  RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request\na: %ld" " b: %ld",
-                request->a, request->b);
-  RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%ld]", (long int)response->sum);
-}
+#if _example_interfaces_
+    #include "example_interfaces/srv/add_two_ints.hpp"
 
-int main(int argc, char **argv)
-{
-  rclcpp::init(argc, argv);
+    void add(const std::shared_ptr<example_interfaces::srv::AddTwoInts::Request> request,
+            std::shared_ptr<example_interfaces::srv::AddTwoInts::Response>      response)
+    {
+    response->sum = request->a + request->b;
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request\na: %ld" " b: %ld",
+                    request->a, request->b);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%ld]", (long int)response->sum);
+    }
 
-  std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("add_two_ints_server");
+    int main(int argc, char **argv)
+    {
+    rclcpp::init(argc, argv);
 
-  rclcpp::Service<example_interfaces::srv::AddTwoInts>::SharedPtr service =
-    node->create_service<example_interfaces::srv::AddTwoInts>("add_two_ints", &add);
+    std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("add_two_ints_server");
 
-  RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to add two ints.");
+    rclcpp::Service<example_interfaces::srv::AddTwoInts>::SharedPtr service =
+        node->create_service<example_interfaces::srv::AddTwoInts>("add_two_ints", &add);
 
-  rclcpp::spin(node);
-  rclcpp::shutdown();
-}
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to add two ints.");
+
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    }
+#elif _tutorial_interfaces_
+    #include "tutorial_interfaces/srv/add_three_ints.hpp"    
+    
+    void add(const std::shared_ptr<tutorial_interfaces::srv::AddThreeInts::Request> request,     // CHANGE
+          std::shared_ptr<tutorial_interfaces::srv::AddThreeInts::Response>       response)  // CHANGE
+    {
+    response->sum = request->a + request->b + request->c;                                      // CHANGE
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Incoming request\na: %ld" " b: %ld" " c: %ld",  // CHANGE
+                    request->a, request->b, request->c);                                         // CHANGE
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%ld]", (long int)response->sum);
+    }
+                                        // CHANGE
+
+    int main(int argc, char **argv)
+    {
+    rclcpp::init(argc, argv);
+
+    std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("add_three_ints_server");   // CHANGE
+
+    rclcpp::Service<tutorial_interfaces::srv::AddThreeInts>::SharedPtr service =               // CHANGE
+        node->create_service<tutorial_interfaces::srv::AddThreeInts>("add_three_ints",  &add);   // CHANGE
+
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to add three ints.");                     // CHANGE
+
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    }
+#endif
+
+
+
+
+
+

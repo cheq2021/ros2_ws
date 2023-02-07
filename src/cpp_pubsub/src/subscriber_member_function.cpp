@@ -12,11 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#define stdmsg 1
+#define custommsg 0
+
 #include <functional>
 #include <memory>
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
+
+#if custommsg
+  #include "tutorial_interfaces/msg/num.hpp"                                            // CHANGE
+#endif
 
 using std::placeholders::_1;
 
@@ -26,16 +33,29 @@ public:
   MinimalSubscriber()
   : Node("minimal_subscriber")
   {
-    subscription_ = this->create_subscription<std_msgs::msg::String>(
-      "topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
+    #if stdmsg
+      subscription_ = this->create_subscription<std_msgs::msg::String>(
+        "topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
+    #elif custommsg
+      subscription_ = this->create_subscription<tutorial_interfaces::msg::Num>(    // CHANGE
+        "topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
+    #endif
   }
 
 private:
-  void topic_callback(const std_msgs::msg::String & msg) const
-  {
-    RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg.data.c_str());
-  }
-  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
+  #if stdmsg
+    void topic_callback(const std_msgs::msg::String & msg) const
+    {
+      RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg.data.c_str());
+    }
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
+  #elif custommsg
+    void topic_callback(const tutorial_interfaces::msg::Num & msg) const  // CHANGE
+    {
+      RCLCPP_INFO_STREAM(this->get_logger(), "I heard: '" << msg.num << "'");     // CHANGE
+    }
+    rclcpp::Subscription<tutorial_interfaces::msg::Num>::SharedPtr subscription_;  // CHANGE
+  #endif
 };
 
 int main(int argc, char * argv[])
