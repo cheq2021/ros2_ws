@@ -19,3 +19,7 @@
 ## tutorial_interfaces
 * Creating custom msg and srv files
 * https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html
+
+## more_interfaces
+* Implementing custom interfaces
+* https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface.html#build-a-msg-file
