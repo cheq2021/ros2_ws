@@ -23,3 +23,7 @@
 ## more_interfaces
 * Implementing custom interfaces
 * https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface.html#build-a-msg-file
+
+## cpp_parameters
+* Using parameters in a class (C++)
+* https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-CPP.html
