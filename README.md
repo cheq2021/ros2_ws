@@ -27,3 +27,7 @@
 ## cpp_parameters
 * Using parameters in a class (C++)
 * https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-CPP.html
+
+## python_parameters
+* Using parameters in a class (Python)
+* https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-Python.html
