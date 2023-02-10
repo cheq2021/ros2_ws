@@ -39,6 +39,10 @@
 
 ## Intermediate
 
-### Creating a launch file
-* 
+### launcher-turtlesim_mimic_launch
+* Creating a launch file
 * https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Creating-Launch-Files.html
+
+### launcher-py_launch_example
+* Integrating launch files into ROS 2 packages
+* https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Launch-system.html
