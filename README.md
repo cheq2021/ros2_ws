@@ -50,3 +50,7 @@
 ### launcher-py_launch_example
 * Using substitutions
 * https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Using-Substitutions.html
+
+### launcher-example_event_handlers.launch.py
+* Using event handlers
+* https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Using-Event-Handlers.html
