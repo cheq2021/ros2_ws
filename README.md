@@ -37,3 +37,8 @@
 * Creating and using plugins (C++)
 * https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Pluginlib.html
 
+## Intermediate
+
+### Creating a launch file
+* 
+* https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Creating-Launch-Files.html
