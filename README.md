@@ -54,3 +54,7 @@
 ### launcher-example_event_handlers.launch.py
 * Using event handlers
 * https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Using-Event-Handlers.html
+
+### 
+* Managing large projects
+* https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.html
